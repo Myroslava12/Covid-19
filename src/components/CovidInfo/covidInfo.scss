@@ -98,7 +98,7 @@
     }
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 601px) and (max-width: 1024px) {
     .covid-section {
         padding: 2rem;
     }
@@ -113,7 +113,7 @@
     }
 }
 
-@media (max-width: 1650px) {
+@media (min-wodth: 1025px) and (max-width: 1650px) {
     .covid-section {
         padding: 4rem;
     }
