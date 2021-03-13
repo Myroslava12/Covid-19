@@ -15,6 +15,7 @@ const CovidInfo = () => {
   const { data, setData, values, setValues, country } = useContext(DataCovidContext);
   const [loading, setLoading] = useState(false);
   const { month, year } = values;
+  const [objectIsEmpty, setObjectIsEmpry] = useState(false);
 
   const today = new Date();
   const currentYear = today.getFullYear();
@@ -41,7 +42,12 @@ const CovidInfo = () => {
       const dayStart = daysToRenderFromFirstDay(values.year, values.month);
       const dayEnd = daysToRenderToLastDayINMonth(values.year, values.month, days);
       const covidData = await fetchData(country, dayStart, dayEnd);
-      setData(covidData);
+      if (Object.keys(covidData).length === 0) {
+        setObjectIsEmpry(true);
+      } else {
+        setData(covidData);
+        setObjectIsEmpry(false);
+      }
     }
     getFetchingData();
     setLoading(false);
@@ -49,18 +55,20 @@ const CovidInfo = () => {
   
   const isNextBtnDisabled = (values.year === currentYear && values.month === currentMonth + 1);
   const isPrevBtnDisabled = (values.year === FIRST_YEAR_OF_COVID_19+1 && values.month === 1);
-  
+
   return (
     <section className="covid-section">
       <div className="container">
         <Link to={ROUTES.FORM} className="link-back">Back to Form</Link>
-        <div className="chart-box">
+        {objectIsEmpty ? 
+          <h1 className="message">Data not found. Go back to the Form Page and select year and month</h1> : 
+          <div className="chart-box">
           <LineChart width={1700} height={600} data={data.result}>
-          <XAxis dataKey="date" />
-          <YAxis />
-          <CartesianGrid />
-          <Tooltip />
-          <Legend  />
+            <XAxis dataKey="date" />
+            <YAxis />
+            <CartesianGrid />
+            <Tooltip />
+            <Legend  />
             <Line
               type="monotone"
               dataKey="confirmed"
@@ -72,7 +80,7 @@ const CovidInfo = () => {
             <Line type="monotone" strokeWidth={2} dataKey="deaths" stroke="#ff7300" legendType="circle" yAxisId={0} />
             <Line type="monotone" strokeWidth={2} dataKey="recovered" stroke="green" legendType="circle" yAxisId={0} />
           </LineChart>
-        </div>
+        </div>}
         {loading && <div className="loading">
           <Loader
             type="Puff"
