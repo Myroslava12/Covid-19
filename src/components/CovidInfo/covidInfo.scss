@@ -1,0 +1,124 @@
+.covid-section {
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    background: $gradient;
+    position: relative;
+    padding-top: 3rem;
+}
+
+.chart-box {
+    background-color: $whiteColor;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-x: scroll;
+    max-width: 100%;
+}
+
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1600px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $whiteColor;
+}
+
+.link-back {
+    font-size: 3rem;
+    line-height: 3.5rem;
+    color: $whiteColor;
+    font-family: "Times New Roman", sans-serif;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.btn-box {
+    position: absolute;
+    left: 0;
+    bottom: 2rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chart-btn {
+    background-color: transparent;
+    border: 2px solid $whiteColor;
+    outline: none;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    color: $whiteColor;
+    padding: 1rem 2rem;
+    transition: .1s;
+    font-weight: 500;
+    font-family: "Times New Roman", sans-serif;
+    border-radius: 2rem;
+
+    &:hover {
+        background-color: $whiteColor;
+        color: $mainColor;
+    }
+}
+
+.title-error {
+    font-size: 2rem;
+    line-height: 2.4rem;
+    color: $errorColor;
+    font-weight: bold;
+}
+
+.disabled {
+    border-color: $grayColor;
+    color:$grayColor;
+}
+
+@media (max-width: 600px) {
+    .covid-section {
+        padding: 2rem;
+    }
+
+    .chart-box {
+        max-height: 350px;
+    }
+
+    .loading {
+        height: 350px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .covid-section {
+        padding: 2rem;
+    }
+
+    .chart-box {
+        max-height: 450px;
+    }
+
+    .loading {
+        height: 450px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 1650px) {
+    .covid-section {
+        padding: 4rem;
+    }
+
+    .chart-box {
+        max-height: 600px;
+    }
+}
